@@ -1,0 +1,1 @@
+import{t as e}from"./request-5h_RJlqR.js";function t(t){return e.post(`/api/orders/list`,t)}function n(t){return e.get(`/api/orders/${t}`)}function r(t){return e.post(`/api/orders`,t)}function i(t,n){return e.put(`/api/orders/${t}`,n)}function a(t){return e.delete(`/api/orders/${t}`)}export{i as a,t as i,a as n,n as r,r as t};

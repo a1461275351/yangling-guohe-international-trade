@@ -1,0 +1,288 @@
+UPDATE biz_template SET html_content='<div style="font-family:SimSun,serif;line-height:1.8">
+<p><br></p>
+<p><br></p>
+<p><strong>乙方(供应方):</strong></p>
+<p>统一社会信用代码：</p>
+<p>地址：</p>
+<p>联系人：                 联系电话：</p>
+<p><br></p>
+<p>第一条采购标的及规格</p>
+<p>1.1产品名称及明细：甲方向乙方采购的鲜蜜柚种类、规格、数量、单价等详见附件一《采购订单》, 为本合同组成部分。</p>
+<p>1.2质量标准：</p>
+<p>详见附件二《果品要求》。</p>
+<p>1.3包装需适合长途运输、符合防挤压、防变质并符合出口货物包装要求，包装材料须符合出口动植物检 疫的要求。</p>
+<p>1.4乙方需随货提供植物检疫证书；包装需标注英文品名、净重、包装日期等。</p>
+<p>第二条交货及验收</p>
+<p> 2.2验收方式：</p>
+<p>甲方有权对货物在交货地点或者指定地点进行抽样或全检，验收不合格，甲方有权拒收整批货物并要求乙 方换货或退货并返还己支付的预付款。</p>
+<p>验收合格后，双方签署《交货验收单》;若未签署，视为验收未通过。</p>
+<p>第三条价格与付款</p>
+<p>3.1合同价款：按附件一《采购订单》执行，含税费、包装、商检、植检证等的含税车板交货价。</p>
+<p>3.2付款方式：</p>
+<p>合同签订后甲方支付总货款的30%作为定金，货物在关柜发车后支付50%，剩余20%尾款到达口岸验收合格签定《交货验收单》 后支付。</p>
+<p>3.3乙方指定收款账户</p>
+<p>户 名 ：</p>
+<p>账 号 ：</p>
+<p><br></p>
+<p><br></p>
+<p>开户行：中国建设银行股份有限公司南靖支行</p>
+<p>3.4甲方在支付本合同项下每一笔款项后，乙方应当按照甲方要求开具并提供等额合格的增值税专用发票， 乙方未按期开具或拒绝开具或所开具的发票不符合约定的，甲方有权延期付款，不构成违约。</p>
+<p>第四条违约责任</p>
+<p>4.1乙方逾期交货的，每逾期1日，按总货款的0.05%(万分之五)向甲方支付违约金，甲方可直接从货 款中扣减；逾期超过5日的，甲方有权解除合同，要求乙方在5日内退还预付款，并按照总货款的20%向 甲方支付违约金，违约金不足以弥补甲方损失的乙方应当全额赔偿；</p>
+<p>4.2乙方货物质量不达标的，按货物金额的20%向甲方支付违约金，并赔偿甲方全部损失；</p>
+<p>4.3因乙方原因导致合同解除或终止的，乙方需赔偿甲方一切直接及间接损失。</p>
+<p>4.4甲方逾期付款的，每逾期一天，应按逾期金额的0.05%(万分之五)向乙方支付违约金。</p>
+<p>4.5 任何一方有其他违反本合同情形的，应赔偿守约方全部损失，该损失包括但不限于对守约方所造成的 直接损失、可得利益损失、守约方支付给第三方的赔偿费用/违约金/罚款、调查取证费用/公证费、诉讼 费用、律师费用以及因此而支付的其他合理费用。</p>
+<p>第五条不可抗力</p>
+<p>5.1本合同所称不可抗力是指不能预见、不能避免并不能克服的客观情况，包括但不限于自然灾害地震、 洪水、台风等)、政府行为(如征收、征用、政策调整等)、战争、疫情等。若一方因不可抗力事件不能履 行合同义务，应在不可抗力事件发生后两个工作日内通知对方，并提供相关证明文件。</p>
+<p>5.2在不可抗力事件持续期间，双方互不承担违约责任，但应尽力采取措施减少损失。不可抗力事件结束 后，双方应协商合同的继续履行或变更事宜。</p>
+<p>第六条争议解决</p>
+<p>6.1本合同以及本合同项下订单/附件/补充协议等的制定、解释及其在执行过程中出现的、或与本合同有 关的纠纷之解决，受中华人民共和国(不含港澳台)现行有效的法律的约束。</p>
+<p>6.2发生争议时双方应友好协商解决；协商不成，依法向甲方所在地人民法院提起诉讼。</p>
+<p>第七条其他</p>
+<p>7.1本合同未尽事宜，双方可签订补充协议，补充协议与本合同具有同等效力。</p>
+<p>7.2本合同一式肆份，甲乙双方各执贰份，有效期一年，自双方签字盖章后生效，各份合同文本均具有同 等法律效力。</p>
+<p>7.3双方确认的订单与本合同不一致的，以订单为准。订单中无约定的，以本合同约定为准。</p>
+<p>7.4本合同附件与本合同具有同等法律效力。</p>
+<p><br></p>
+<p>甲方(盖章):                                              乙方(盖章):</p>
+<p>法定代表人或授权代表签字：                                               法定代表人或授权代表签字：</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><strong>附件 一 ：</strong></p>
+<p><br></p>
+<p style="text-align:center">采购订单</p>
+<p><br></p>
+<p>订单编号：  GHHS-XMY-2501-1</p>
+<p><br></p>
+<p>最终结算价格以实际装货数量为准，多退少补。</p>
+<p><br></p>
+<p><br></p>
+<p style="text-align:justify">包装要求：</p>
+<p style="text-align:justify">付款方式：电汇</p>
+<p style="text-align:justify">交货地点：乙方工厂</p>
+<p style="text-align:justify">交货时间：从开始装货到全部发运不超过5天</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>甲方(盖章):</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>乙方(盖章)</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><strong>附件二：</strong></p>
+<p><strong>果品要求</strong></p>
+<p>合格果品：外皮光滑、细腻、金黄、饱满，大小在规定范围内；每箱果子必须大小均匀、颜色一致、果形一致；果面干净；果皮完整。</p>
+<p style="text-align:justify">不合格果品：大小不一致、颜色、果形不均匀；果子缩水；果面有色素残留、无法擦掉的 污渍；有破皮、裂纹、压伤；有虫子、虫眼；有疤痕、黑点、斑点、锈斑；次果率控制在5%以下，不允许大面积破皮。</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><strong>附件三：</strong></p>
+<p><br></p>
+<p><strong>交货验收单</strong></p>
+<p><br></p>
+<p>一、货物基本信息</p>
+<p><br></p>
+<p style="text-align:justify"><strong>二、验收结论</strong></p>
+<p style="text-align:justify"><strong>□ 验收合格：货物符合合同约定，甲方同意接收。</strong></p>
+<p style="text-align:justify"><strong>□ 验收不合格：不合格率＞3%，甲方要求乙方换货或者拒收整批货物，乙方需在_1_日内重新供货并承担全部费用。</strong></p>
+<p><br></p>
+<p style="text-align:justify"><strong>收货验收人：          日期：               司      机：            日期：</strong></p>
+<p><br></p>
+<table style="width:100%;border-collapse:collapse;margin:10px 0">
+<tr>
+<th style="border:1px solid #333;padding:5px 8px">鲜蜜柚采购合同</th>
+<th style="border:1px solid #333;padding:5px 8px"></th>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px">合同编号：
+签订地点：
+签订日期：</td>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px">甲方(采购方):杨凌国合跨境贸易有限公司
+统一社会信用代码：91610403MAB2LRP22N
+地址：陕西省杨凌示范区杨凌大道16号上合农业国际贸易港A座1806室
+联系人：张星维                  联系电话： 15389407300</td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+</table>
+<table style="width:100%;border-collapse:collapse;margin:10px 0">
+<tr>
+<th style="border:1px solid #333;padding:5px 8px">品名</th>
+<th style="border:1px solid #333;padding:5px 8px">品种</th>
+<th style="border:1px solid #333;padding:5px 8px">规格</th>
+<th style="border:1px solid #333;padding:5px 8px">总件数</th>
+<th style="border:1px solid #333;padding:5px 8px">净重 KG/件</th>
+<th style="border:1px solid #333;padding:5px 8px">毛重 KG/件</th>
+<th style="border:1px solid #333;padding:5px 8px">总净重
+(千克)</th>
+<th style="border:1px solid #333;padding:5px 8px">计量
+单位</th>
+<th style="border:1px solid #333;padding:5px 8px">含税单价 元/千克</th>
+<th style="border:1px solid #333;padding:5px 8px">税率</th>
+<th style="border:1px solid #333;padding:5px 8px">总金额 元</th>
+<th style="border:1px solid #333;padding:5px 8px">装货时间</th>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px">合计</td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px">合计金额(人民币):元   大写：</td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+</table>
+<table style="width:100%;border-collapse:collapse;margin:10px 0">
+<tr>
+<th style="border:1px solid #333;padding:5px 8px">序 号</th>
+<th style="border:1px solid #333;padding:5px 8px">订单编号</th>
+<th style="border:1px solid #333;padding:5px 8px">产品名称</th>
+<th style="border:1px solid #333;padding:5px 8px">规格</th>
+<th style="border:1px solid #333;padding:5px 8px">订单净重</th>
+<th style="border:1px solid #333;padding:5px 8px">订单
+件数</th>
+<th style="border:1px solid #333;padding:5px 8px">交货日期</th>
+<th style="border:1px solid #333;padding:5px 8px">实际交
+货净重</th>
+<th style="border:1px solid #333;padding:5px 8px">实际交
+货件数</th>
+<th style="border:1px solid #333;padding:5px 8px">抽检
+数量</th>
+<th style="border:1px solid #333;padding:5px 8px">交货
+地点</th>
+<th style="border:1px solid #333;padding:5px 8px">运输 方式</th>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px">1</td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+<td style="border:1px solid #333;padding:5px 8px"></td>
+</tr>
+<tr>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+<td style="border:1px solid #333;padding:5px 8px">备注：
+不合格率计算公式：(不合格数量÷抽检数量)×100%;
+抽检比例：按合同约定_5_%;
+不合格判定标准：果型不端正、虫害、包装破损等。</td>
+</tr>
+</table>
+</div>' WHERE id=20;
