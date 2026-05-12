@@ -10,7 +10,7 @@ BASE_URL = "http://localhost:8081"
 # ADMIN - 系统管理员：拥有系统最高权限
 ADMIN_TENANT_CODE = "GUOHE"
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "admin123"
+ADMIN_PASSWORD = "Admin@123"
 
 # 测试用企业信息
 TEST_TENANT_CODE = "TESTCORP"

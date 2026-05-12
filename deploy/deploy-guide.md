@@ -74,7 +74,7 @@ java -jar trade-platform-1.0.0.jar --spring.config.location=application-prod.yml
 
 - 前端访问：http://服务器IP
 - 后端API：http://服务器IP:8081
-- 默认账号：企业号 GUOHE，用户名 admin，密码 admin123
+- 默认账号：企业号 GUOHE，用户名 admin，密码 Admin@123（首次登录后请立即修改）
 
 ## 四、常见问题
 
