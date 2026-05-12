@@ -1,5 +1,6 @@
 package com.trade.platform.module.user.controller;
 
+import com.trade.platform.common.OpLog;
 import com.trade.platform.common.Result;
 import com.trade.platform.module.user.dto.LoginDTO;
 import com.trade.platform.module.user.dto.LoginVO;
@@ -21,12 +22,14 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @OpLog(module = "认证", action = "LOGIN", description = "用户登录")
     @PostMapping("/login")
     public Result<LoginVO> login(@RequestBody @Valid LoginDTO dto) {
         LoginVO vo = userService.login(dto);
         return Result.success(vo);
     }
 
+    @OpLog(module = "认证", action = "REGISTER", description = "用户注册")
     @PostMapping("/register")
     public Result<Void> register(@RequestBody @Valid RegisterDTO dto) {
         userService.register(dto);

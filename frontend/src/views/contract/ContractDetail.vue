@@ -15,6 +15,12 @@
         <el-descriptions-item label="合同标题">
           {{ detail.title }}
         </el-descriptions-item>
+        <el-descriptions-item label="合同类型">
+          {{ contractTypeMap[detail.contractType] || detail.contractType || '-' }}
+        </el-descriptions-item>
+        <el-descriptions-item label="服务企业">
+          {{ detail.enterpriseName || (detail.enterpriseId ? `企业#${detail.enterpriseId}` : '-') }}
+        </el-descriptions-item>
         <el-descriptions-item label="本方企业">
           {{ detail.ourCompany }}
         </el-descriptions-item>
@@ -102,6 +108,14 @@ const statusColorMap = {
   COMPLETED: 'success',
   EXPIRED: 'danger',
   DESTROYED: 'info'
+}
+
+const contractTypeMap = {
+  PURCHASE: '采购合同',
+  SALES: '销售合同',
+  SERVICE: '服务合同',
+  AGENCY: '代理合同',
+  OTHER: '其他'
 }
 
 const partnerTypeMap = {

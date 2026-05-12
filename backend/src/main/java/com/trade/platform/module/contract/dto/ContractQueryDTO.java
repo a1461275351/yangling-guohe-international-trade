@@ -15,6 +15,10 @@ public class ContractQueryDTO {
 
     private String endDate;
 
+    private Long enterpriseId;
+
+    private String contractType;
+
     private Long current = 1L;
 
     private Long size = 20L;

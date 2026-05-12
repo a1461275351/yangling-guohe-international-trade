@@ -58,8 +58,59 @@
       </el-col>
     </el-row>
 
+    <!-- Certification Indicators (Admin/Guohe) -->
+    <el-row v-if="(userStore.isAdmin || userStore.isGuohe) && certData.loaded" :gutter="20" class="stats-row">
+      <el-col :xs="24" :sm="8">
+        <el-card shadow="hover" :class="['stat-card', 'cert-card']" @click="$router.push('/stats')">
+          <div class="stat-content">
+            <div class="stat-icon" :style="{ backgroundColor: certData.enterpriseMet ? '#f0f9eb' : '#fef0f0', color: certData.enterpriseMet ? '#67c23a' : '#f56c6c' }">
+              <el-icon :size="32"><OfficeBuilding /></el-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">{{ certData.enterpriseCount }} <span class="stat-unit">/ {{ certData.enterpriseThreshold }}</span></div>
+              <div class="stat-label">服务企业数
+                <el-tag :type="certData.enterpriseMet ? 'success' : 'danger'" size="small" style="margin-left: 4px">
+                  {{ certData.enterpriseMet ? '达标' : '未达标' }}
+                </el-tag>
+              </div>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="8">
+        <el-card shadow="hover" :class="['stat-card', 'cert-card']" @click="$router.push('/stats')">
+          <div class="stat-content">
+            <div class="stat-icon" :style="{ backgroundColor: certData.tradeMet ? '#f0f9eb' : '#fef0f0', color: certData.tradeMet ? '#67c23a' : '#f56c6c' }">
+              <el-icon :size="32"><DataAnalysis /></el-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">{{ formatAmount(certData.annualTradeTotal) }} <span class="stat-unit">万元</span></div>
+              <div class="stat-label">年度进出口额
+                <el-tag :type="certData.tradeMet ? 'success' : 'danger'" size="small" style="margin-left: 4px">
+                  {{ certData.tradeMet ? '达标' : '未达标' }}
+                </el-tag>
+              </div>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="8">
+        <el-card shadow="hover" :class="['stat-card', 'cert-card']" @click="$router.push('/stats')">
+          <div class="stat-content">
+            <div class="stat-icon" style="background-color: #ecf5ff; color: #409eff;">
+              <el-icon :size="32"><Connection /></el-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">{{ certData.serviceCoverage }}</div>
+              <div class="stat-label">服务类型覆盖</div>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
     <!-- Enterprise Stats -->
-    <el-row v-else :gutter="20" class="stats-row">
+    <el-row v-else-if="!userStore.isAdmin && !userStore.isGuohe" :gutter="20" class="stats-row">
       <el-col :xs="24" :sm="8">
         <el-card shadow="hover" class="stat-card" @click="$router.push('/contracts')">
           <div class="stat-content">
@@ -146,6 +197,7 @@ import { getUserList, getApplyList } from '@/api/user'
 import { getContractList } from '@/api/contract'
 import { getOrderList } from '@/api/order'
 import { getGoodsList } from '@/api/goods'
+import { getCertificationDashboard } from '@/api/stats'
 
 const userStore = useUserStore()
 
@@ -178,6 +230,22 @@ const stats = reactive({
   goodsCount: 0
 })
 
+const certData = reactive({
+  loaded: false,
+  enterpriseCount: 0,
+  enterpriseThreshold: 10,
+  enterpriseMet: false,
+  annualTradeTotal: 0,
+  tradeThreshold: 3500,
+  tradeMet: false,
+  serviceCoverage: '0/6'
+})
+
+function formatAmount(val) {
+  if (!val) return '0'
+  return Number(val).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
 onMounted(async () => {
   if (userStore.isAdmin || userStore.isGuohe) {
     try {
@@ -190,7 +258,14 @@ onMounted(async () => {
       stats.userCount = userRes.data?.total || 0
       stats.pendingApprovals = applyRes.data?.total || 0
     } catch (e) {
-      // ignore
+      console.warn('加载管理统计数据失败', e)
+    }
+    try {
+      const certRes = await getCertificationDashboard()
+      Object.assign(certData, certRes.data)
+      certData.loaded = true
+    } catch (e) {
+      console.warn('加载认定指标失败', e)
     }
   } else {
     try {
@@ -203,7 +278,7 @@ onMounted(async () => {
       stats.orderCount = orderRes.data?.total || 0
       stats.goodsCount = goodsRes.data?.total || 0
     } catch (e) {
-      // ignore
+      console.warn('加载业务统计数据失败', e)
     }
   }
 })
@@ -279,6 +354,16 @@ onMounted(async () => {
   font-size: 14px;
   color: #909399;
   margin-top: 4px;
+}
+
+.stat-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: #909399;
+}
+
+.cert-card {
+  border-top: 3px solid #409eff;
 }
 
 .info-row {

@@ -24,6 +24,10 @@ export function deleteContract(id) {
   return request.delete(`/api/contracts/${id}`)
 }
 
+export function getActiveContracts() {
+  return request.get('/api/contracts/active')
+}
+
 export function getExpiringContracts(params) {
   const days = typeof params === 'object' ? params.days : params
   return request.get(`/api/contracts/expiring?days=${days}`)

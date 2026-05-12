@@ -22,7 +22,7 @@
           <el-input
             v-model="form.password"
             type="password"
-            placeholder="请输入密码"
+            placeholder="8-32位，含大小写字母、数字和特殊字符"
             show-password
           />
         </el-form-item>
@@ -112,7 +112,8 @@ const rules = {
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '密码长度为6-20个字符', trigger: 'blur' }
+    { min: 8, max: 32, message: '密码长度为8-32个字符', trigger: 'blur' },
+    { pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=])/, message: '需包含大小写字母、数字和特殊字符', trigger: 'blur' }
   ],
   confirmPassword: [
     { required: true, message: '请再次输入密码', trigger: 'blur' },

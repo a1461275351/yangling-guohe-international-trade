@@ -1,5 +1,6 @@
 package com.trade.platform.module.order.controller;
 
+import com.trade.platform.common.OpLog;
 import com.trade.platform.common.PageResult;
 import com.trade.platform.common.Result;
 import com.trade.platform.module.order.dto.OrderCreateDTO;
@@ -28,22 +29,26 @@ public class OrderController {
         return Result.success(orderService.getOrderDetail(id));
     }
 
+    @OpLog(module = "订单管理", action = "CREATE", description = "新增订单")
     @PostMapping
     public Result<Order> create(@Valid @RequestBody OrderCreateDTO dto) {
         return Result.success(orderService.create(dto));
     }
 
+    @OpLog(module = "订单管理", action = "UPDATE", description = "编辑订单")
     @PutMapping("/{id}")
     public Result<Order> update(@PathVariable Long id, @Valid @RequestBody OrderCreateDTO dto) {
         return Result.success(orderService.update(id, dto));
     }
 
+    @OpLog(module = "订单管理", action = "UPDATE", description = "变更订单状态")
     @PutMapping("/{id}/status")
     public Result<Void> updateStatus(@PathVariable Long id, @RequestParam String status) {
         orderService.updateStatus(id, status);
         return Result.success();
     }
 
+    @OpLog(module = "订单管理", action = "DELETE", description = "删除订单")
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
         orderService.delete(id);

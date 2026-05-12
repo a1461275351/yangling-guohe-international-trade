@@ -116,13 +116,35 @@ public class OnlyOfficeController {
 
     /**
      * ONLYOFFICE 文档保存回调
-     * 注意：此接口不需要JWT认证，由ONLYOFFICE Document Server直接调用
+     * 由ONLYOFFICE Document Server直接调用，通过 JWT secret 验证来源合法性
      */
     @PostMapping("/callback")
     public Map<String, Object> callback(
             @RequestParam("id") Long id,
             @RequestBody Map<String, Object> body,
+            @RequestHeader(value = "Authorization", required = false) String authHeader,
             HttpServletResponse response) {
+
+        if (StringUtils.hasText(onlyOfficeProps.getJwtSecret())) {
+            String token = (String) body.get("token");
+            if (!StringUtils.hasText(token) && StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
+                token = authHeader.substring(7);
+            }
+            if (!StringUtils.hasText(token)) {
+                log.warn("ONLYOFFICE callback rejected: missing token, templateId={}", id);
+                Map<String, Object> err = new HashMap<>();
+                err.put("error", 1);
+                return err;
+            }
+            try {
+                Jwts.parser().setSigningKey(onlyOfficeProps.getJwtSecret()).parseClaimsJws(token);
+            } catch (Exception e) {
+                log.warn("ONLYOFFICE callback rejected: invalid token, templateId={}", id);
+                Map<String, Object> err = new HashMap<>();
+                err.put("error", 1);
+                return err;
+            }
+        }
 
         int status = (int) body.getOrDefault("status", 0);
         log.info("ONLYOFFICE callback: templateId={}, status={}", id, status);
@@ -153,8 +175,15 @@ public class OnlyOfficeController {
         Template template = templateService.getById(id);
         Path filePath = Paths.get(template.getFilePath());
 
-        // 下载文件（忽略SSL证书验证，因为ONLYOFFICE Docker默认自签名证书）
         URL url = new URL(downloadUrl);
+        String host = url.getHost();
+        if ("localhost".equalsIgnoreCase(host) || "127.0.0.1".equals(host)
+                || host.startsWith("10.") || host.startsWith("172.") || host.startsWith("169.254.")) {
+            if (!StringUtils.hasText(onlyOfficeProps.getDocumentServer())
+                    || !downloadUrl.startsWith(onlyOfficeProps.getDocumentServer())) {
+                throw new BusinessException("不允许下载内网地址文件");
+            }
+        }
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(10000);

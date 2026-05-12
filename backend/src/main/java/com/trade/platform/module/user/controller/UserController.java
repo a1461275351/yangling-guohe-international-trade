@@ -27,25 +27,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequireRole("ADMIN")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PostMapping("/list")
     public Result<PageResult<User>> list(@RequestBody UserQueryDTO dto) {
         PageResult<User> result = userService.getUserList(dto);
         return Result.success(result);
     }
 
-    @RequireRole("ADMIN")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PutMapping("/{id}/status")
     public Result<Void> updateStatus(@PathVariable Long id, @RequestParam Integer status) {
         userService.updateUserStatus(id, status);
         return Result.success();
     }
 
-    @RequireRole("ADMIN")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PutMapping("/{id}/reset-password")
-    public Result<Void> resetPassword(@PathVariable Long id) {
-        userService.resetUserPassword(id);
-        return Result.success();
+    public Result<String> resetPassword(@PathVariable Long id) {
+        String newPassword = userService.resetUserPassword(id);
+        return Result.success(newPassword);
     }
 
     @GetMapping("/info")

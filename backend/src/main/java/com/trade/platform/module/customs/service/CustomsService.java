@@ -68,6 +68,15 @@ public class CustomsService {
         if (StringUtils.hasText(dto.getStatus())) {
             wrapper.eq(CustomsDeclaration::getStatus, dto.getStatus());
         }
+        if (dto.getContractId() != null) {
+            wrapper.eq(CustomsDeclaration::getContractId, dto.getContractId());
+        }
+        if (dto.getOrderId() != null) {
+            wrapper.eq(CustomsDeclaration::getOrderId, dto.getOrderId());
+        }
+        if (dto.getEnterpriseId() != null) {
+            wrapper.eq(CustomsDeclaration::getEnterpriseId, dto.getEnterpriseId());
+        }
         wrapper.orderByDesc(CustomsDeclaration::getCreateTime);
 
         Page<CustomsDeclaration> page = new Page<>(dto.getCurrent(), dto.getSize());

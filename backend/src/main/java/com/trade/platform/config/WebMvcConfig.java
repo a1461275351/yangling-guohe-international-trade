@@ -44,12 +44,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 映射 /uploads/** 到文件系统，让 ONLYOFFICE 可通过 URL 访问文件
-        String absolutePath = Paths.get(uploadPath).toAbsolutePath().normalize().toString();
-        if (!absolutePath.endsWith("/") && !absolutePath.endsWith("\\")) {
-            absolutePath += "/";
-        }
-        registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:" + absolutePath);
+        // /uploads/** 不再公开映射，文件下载通过 FileController 鉴权接口
+        // 仅保留 OnlyOffice 内部访问需要的路径（通过内网访问，非公网暴露）
     }
 }

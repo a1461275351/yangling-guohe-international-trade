@@ -32,6 +32,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result<Void> handleException(Exception e) {
         log.error("System exception: {}", e.getMessage(), e);
-        return Result.error("系统内部错误: " + e.getMessage());
+        return Result.error(500, "系统繁忙，请稍后再试");
     }
 }
