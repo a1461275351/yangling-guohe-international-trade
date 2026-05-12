@@ -1,4 +1,4 @@
-# README
+﻿# README
 
 杨凌国合外贸综合服务平台资料
 外综服平台  - 部署说明
@@ -44,7 +44,7 @@ mysql -u root -p < sql/init.sql
 
 初始化后会⾃动创建：  - 数据库  trade_platform - 默认租户：
 企业号 GUOHE，名称 杨凌国合跨境贸易有限公司 - 默认管理员账
-户：⽤户名 admin，密码 admin123
+户：⽤户名 admin，密码 Admin@123
 2. 修改后端配置
 编辑 backend/src/main/resources/application-prod.yml
 （或同级⽬录新建  application.yml）：
@@ -121,7 +121,7 @@ ENTERPRISE 企业⽤户 本企业业务数据（业务模块）
 1. 系统管理员（ADMIN ）：
 企业号：GUOHE（固定，系统级⽤户不区分租户）
 ⽤户名：admin
-密码：admin123
+密码：Admin@123
 1. 新增⽤户流程：
 填写注册信息  → 待审批状态  → ADMIN 在 " ⽤户审批 " 中审核通过  →
 登录使⽤

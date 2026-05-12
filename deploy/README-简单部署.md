@@ -30,4 +30,4 @@ npm run dev
 
 ## 访问
 http://服务器IP
-账号: GUOHE / admin / admin123
+账号: GUOHE / admin / Admin@123（首次登录后请立即修改）

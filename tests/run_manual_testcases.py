@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 按照《外综服平台_手动测试用例_中文版.xlsx》逐条执行
 TC-01 ~ TC-79 全部用例
@@ -155,7 +155,7 @@ def sheet1():
     R.section("Sheet 1: 登录注册 (需求3.1.1)")
 
     def tc01():
-        r = admin.login("GUOHE","admin","admin123")
+        r = admin.login("GUOHE","admin","Admin@123")
         ok(r)
         d = r["data"]
         assert d.get("token"), "缺少token"
@@ -172,7 +172,7 @@ def sheet1():
 
     def tc03():
         c = API()
-        r = c.login("NOTEXIST","admin","admin123")
+        r = c.login("NOTEXIST","admin","Admin@123")
         fail(r)
     R.run("TC-03","登录","不存在的企业号 → 登录失败", tc03)
 
@@ -227,7 +227,7 @@ def sheet1():
 # ============================================================
 def sheet2():
     R.section("Sheet 2: 用户管理 (需求3.1.2~3.1.4)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
 
     # --- 个人信息 ---
     def tc10():
@@ -247,12 +247,12 @@ def sheet2():
     R.run("TC-11","个人信息","修改手机号邮箱 → 保存成功", tc11)
 
     def tc12():
-        r = admin.put("/api/users/password",{"oldPassword":"admin123","newPassword":"NewPass@999"})
+        r = admin.put("/api/users/password",{"oldPassword":"Admin@123","newPassword":"NewPass@999"})
         ok(r, "改密码")
         admin.login("GUOHE","admin","NewPass@999")
-        r2 = admin.put("/api/users/password",{"oldPassword":"NewPass@999","newPassword":"admin123"})
+        r2 = admin.put("/api/users/password",{"oldPassword":"NewPass@999","newPassword":"Admin@123"})
         ok(r2, "改回密码")
-        admin.login("GUOHE","admin","admin123")
+        admin.login("GUOHE","admin","Admin@123")
     R.run("TC-12","个人信息","修改密码 → 新密码可登录 → 改回", tc12)
 
     def tc13():
@@ -359,7 +359,7 @@ def sheet2():
 # ============================================================
 def sheet3():
     R.section("Sheet 3: 租户管理 (需求3.2)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global created_tenant_id
 
     def tc22():
@@ -413,7 +413,7 @@ def sheet3():
 # ============================================================
 def sheet4():
     R.section("Sheet 4: 配置管理 (需求3.3)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global config_item_id, config_val_id_1, config_val_id_2
     item_code = f"COUNTRY_{TS}"
 
@@ -462,7 +462,7 @@ def sheet4():
 # ============================================================
 def sheet5():
     R.section("Sheet 5: 模板管理 (需求3.4)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global template_id
 
     def tc32():
@@ -512,7 +512,7 @@ def sheet5():
 # ============================================================
 def sheet6():
     R.section("Sheet 6: 合同管理 (需求3.5)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global contract_id, customer_id
 
     # 先创建客户
@@ -598,7 +598,7 @@ def sheet6():
 # ============================================================
 def sheet7():
     R.section("Sheet 7: 货物管理 (需求3.6)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global goods_id_1, goods_id_2
 
     def tc44():
@@ -659,7 +659,7 @@ def sheet7():
 # ============================================================
 def sheet8():
     R.section("Sheet 8: 订单管理 (需求3.7)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global order_id
 
     def tc50():
@@ -714,7 +714,7 @@ def sheet8():
 # ============================================================
 def sheet9():
     R.section("Sheet 9: 报关单管理 (需求3.8)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
 
     def tc55():
         try:
@@ -757,7 +757,7 @@ def sheet9():
 # ============================================================
 def sheet10():
     R.section("Sheet 10: 文件管理 (需求3.9)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global file_id
 
     def tc59():
@@ -801,7 +801,7 @@ def sheet10():
 # ============================================================
 def sheet11():
     R.section("Sheet 11: 供应商客户 (需求3.11)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     global supplier_id
     sup_name = f"深圳测试供应商_{TS}"
 
@@ -850,7 +850,7 @@ def sheet11():
 # ============================================================
 def sheet12():
     R.section("Sheet 12: 权限测试 (需求3.10 + 4.2)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
 
     def tc67():
         for path in ["/api/tenants/list","/api/config/items/list","/api/users/list"]:
@@ -903,7 +903,7 @@ def sheet12():
 # ============================================================
 def sheet13():
     R.section("Sheet 13: 端到端业务流程 (需求2.1)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     from datetime import datetime, timedelta
 
     flow_tenant_code = f"E2E{TS}"
@@ -998,7 +998,7 @@ def sheet13():
 # ============================================================
 def sheet14():
     R.section("Sheet 14: 其他测试 (需求3.12 + 4.x)")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
 
     R.skip("TC-77","退税管理","退税页面(静态展示)","纯前端页面,无API接口")
 
@@ -1020,7 +1020,7 @@ def sheet14():
 # ============================================================
 def cleanup():
     R.section("清理测试数据")
-    admin.login("GUOHE","admin","admin123")
+    admin.login("GUOHE","admin","Admin@123")
     # 清理订单
     if order_id:
         admin.put(f"/api/orders/{order_id}/status", params={"status":"DRAFT"})

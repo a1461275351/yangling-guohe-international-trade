@@ -1,4 +1,4 @@
-"""
+﻿"""
 全量接口健康检查 - 排查所有API报错
 """
 import sys, os
@@ -58,7 +58,7 @@ print("=" * 80)
 # ========== 认证模块 ==========
 print("\n--- 认证模块 /api/auth ---")
 for m, p, d, pm, l in [
-    ("POST", "/api/auth/login", {"tenantCode":"GUOHE","username":"admin","password":"admin123"}, None, "登录"),
+    ("POST", "/api/auth/login", {"tenantCode":"GUOHE","username":"admin","password":"Admin@123"}, None, "登录"),
     ("POST", "/api/auth/login", {"tenantCode":"GUOHE","username":"admin","password":"wrong"}, None, "错误登录(预期失败)"),
 ]:
     total += 1

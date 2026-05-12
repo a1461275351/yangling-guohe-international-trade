@@ -26,6 +26,13 @@ test_files = [
     ("test_12_file.py",         "需求3.9   文件管理"),
     ("test_13_permission.py",   "需求3.10  权限管理"),
     ("test_14_business_flow.py","需求2.1   核心业务流程"),
+    ("test_15_enterprise.py",   "P3-1  服务企业档案"),
+    ("test_16_logistics.py",    "P3-2  物流服务"),
+    ("test_17_taxrefund.py",    "P3-3  退税业务"),
+    ("test_18_settlement.py",   "P3-4  结算收汇"),
+    ("test_19_insurance.py",    "P3-5  信保服务"),
+    ("test_20_financing.py",    "P3-6  融资协助"),
+    ("test_21_stats.py",        "P3-7  认定驾驶舱+导出"),
 ]
 
 

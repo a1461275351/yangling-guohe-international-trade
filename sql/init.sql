@@ -417,9 +417,9 @@ CREATE TABLE IF NOT EXISTS biz_customs_review (
 -- 默认租户：杨凌国合跨境贸易有限公司
 INSERT INTO sys_tenant (tenant_code, name, credit_code, status) VALUES ('GUOHE', '杨凌国合跨境贸易有限公司', '91610000XXXXXXXXXX', 1);
 
--- 默认管理员用户 (密码: admin123)
-INSERT INTO sys_user (username, password, real_name, role, tenant_id, status) VALUES ('admin', '$2a$10$vRuGcfYdzolQjrqCBxbSAei3oCVY5UtAp50CfFtie260O/ohtOOey', '系统管理员', 'ADMIN', 1, 1);
--- default password: admin123
+-- 默认管理员用户 (密码: Admin@123 — 符合P1密码复杂度: 大小写字母+数字+特殊字符)
+INSERT INTO sys_user (username, password, real_name, role, tenant_id, status) VALUES ('admin', '$2a$10$VkeY.5ocE692HtX5Js.pJ.1dBf9/.j9YH/k0Ep.DYWbLgHpXZ/Rjy', '系统管理员', 'ADMIN', 1, 1);
+-- default password: Admin@123  ← 首次登录后请立即修改
 
 -- ============================================================
 -- 基础配置数据
