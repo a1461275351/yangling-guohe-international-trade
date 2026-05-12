@@ -33,6 +33,11 @@
           <el-form-item label="运输方式">
             <el-input v-model="queryParams.transportMode" placeholder="运输方式" clearable />
           </el-form-item>
+          <el-form-item label="服务企业">
+            <el-select v-model="queryParams.enterpriseId" placeholder="全部" clearable filterable @change="handleSearch">
+              <el-option v-for="e in enterpriseList" :key="e.id" :label="e.enterpriseName" :value="e.id" />
+            </el-select>
+          </el-form-item>
           <el-form-item label="状态">
             <el-select v-model="queryParams.status" placeholder="全部" clearable>
               <el-option label="待审核" value="PENDING" />
@@ -100,11 +105,13 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { getCustomsList } from '@/api/customs'
+import { getActiveEnterprises } from '@/api/enterprise'
 
 const loading = ref(false)
 const tableData = ref([])
 const total = ref(0)
 const dateRange = ref(null)
+const enterpriseList = ref([])
 
 const queryParams = reactive({
   declarationNo: '',
@@ -113,6 +120,7 @@ const queryParams = reactive({
   endDate: '',
   transportMode: '',
   status: '',
+  enterpriseId: null,
   pageNum: 1,
   pageSize: 20
 })
@@ -154,6 +162,7 @@ function handleReset() {
   queryParams.endDate = ''
   queryParams.transportMode = ''
   queryParams.status = ''
+  queryParams.enterpriseId = null
   dateRange.value = null
   queryParams.pageNum = 1
   loadData()
@@ -172,7 +181,17 @@ async function loadData() {
   }
 }
 
+async function loadEnterprises() {
+  try {
+    const res = await getActiveEnterprises()
+    enterpriseList.value = res.data || []
+  } catch (e) {
+    console.warn('加载企业列表失败', e)
+  }
+}
+
 onMounted(() => {
+  loadEnterprises()
   loadData()
 })
 </script>

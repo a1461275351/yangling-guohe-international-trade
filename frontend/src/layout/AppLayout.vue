@@ -18,8 +18,8 @@
           <template #title>首页</template>
         </el-menu-item>
 
-        <!-- 用户管理 (ADMIN only) -->
-        <el-sub-menu index="user-mgmt" v-if="isAdmin">
+        <!-- 用户管理 (ADMIN/GUOHE) -->
+        <el-sub-menu index="user-mgmt" v-if="isAdmin || isGuohe">
           <template #title>
             <el-icon><User /></el-icon>
             <span>用户管理</span>
@@ -28,8 +28,8 @@
           <el-menu-item index="/user-applies">用户审批</el-menu-item>
         </el-sub-menu>
 
-        <!-- 租户管理 (ADMIN only) -->
-        <el-menu-item index="/tenants" v-if="isAdmin">
+        <!-- 租户管理 (ADMIN/GUOHE) -->
+        <el-menu-item index="/tenants" v-if="isAdmin || isGuohe">
           <el-icon><OfficeBuilding /></el-icon>
           <template #title>租户管理</template>
         </el-menu-item>
@@ -92,10 +92,36 @@
           <template #title>供应商与客户</template>
         </el-menu-item>
 
-        <!-- 退税管理 -->
-        <el-menu-item index="/tax">
-          <el-icon><Money /></el-icon>
-          <template #title>退税管理</template>
+        <!-- 服务企业档案 -->
+        <el-menu-item index="/enterprises">
+          <el-icon><OfficeBuilding /></el-icon>
+          <template #title>服务企业档案</template>
+        </el-menu-item>
+
+        <!-- 综合服务 -->
+        <el-sub-menu index="service-mgmt">
+          <template #title>
+            <el-icon><Operation /></el-icon>
+            <span>综合服务</span>
+          </template>
+          <el-menu-item index="/logistics">物流服务</el-menu-item>
+          <el-menu-item index="/tax-refunds">退税业务</el-menu-item>
+          <el-menu-item index="/settlements">结算收汇</el-menu-item>
+          <el-menu-item index="/insurances">信保服务</el-menu-item>
+          <el-menu-item index="/financings">融资协助</el-menu-item>
+          <el-menu-item index="/tax">退税政策</el-menu-item>
+        </el-sub-menu>
+
+        <!-- 认定驾驶舱 (ADMIN/GUOHE) -->
+        <el-menu-item index="/stats" v-if="isAdmin || isGuohe">
+          <el-icon><DataAnalysis /></el-icon>
+          <template #title>认定驾驶舱</template>
+        </el-menu-item>
+
+        <!-- 操作日志 (ADMIN/GUOHE) -->
+        <el-menu-item index="/logs" v-if="isAdmin || isGuohe">
+          <el-icon><Document /></el-icon>
+          <template #title>操作日志</template>
         </el-menu-item>
       </el-menu>
     </el-aside>

@@ -22,7 +22,10 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -34,13 +37,28 @@ public class FileService {
     @Value("${file.upload-path}")
     private String uploadPath;
 
+    private static final Set<String> ALLOWED_EXTENSIONS = new HashSet<>(Arrays.asList(
+            ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".csv",
+            ".jpg", ".jpeg", ".png", ".gif", ".bmp",
+            ".txt", ".zip", ".rar", ".7z"
+    ));
+
     public BizFile upload(MultipartFile file, String businessType) {
+        if (file.isEmpty()) {
+            throw new BusinessException("上传文件不能为空");
+        }
         if (file.getSize() > 5 * 1024 * 1024) {
             throw new BusinessException("文件大小不能超过5MB");
         }
 
         String originalName = file.getOriginalFilename();
-        String ext = originalName.substring(originalName.lastIndexOf("."));
+        if (!StringUtils.hasText(originalName) || !originalName.contains(".")) {
+            throw new BusinessException("文件名无效");
+        }
+        String ext = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
+        if (!ALLOWED_EXTENSIONS.contains(ext)) {
+            throw new BusinessException("不支持的文件类型: " + ext);
+        }
         String fileName = UUID.randomUUID().toString().replace("-", "") + ext;
 
         String datePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

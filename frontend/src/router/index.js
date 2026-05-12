@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getToken } from '@/utils/auth'
+import { getToken, getUser } from '@/utils/auth'
 
 const routes = [
   {
@@ -193,12 +193,75 @@ const routes = [
         component: () => import('@/views/partner/index.vue'),
         meta: { title: '供应商与客户管理' }
       },
-      // 退税管理
+      // 退税管理（旧静态页面保留）
       {
         path: 'tax',
         name: 'TaxManage',
         component: () => import('@/views/tax/index.vue'),
-        meta: { title: '退税管理' }
+        meta: { title: '退税政策' }
+      },
+      // 服务企业档案
+      {
+        path: 'enterprises',
+        name: 'EnterpriseList',
+        component: () => import('@/views/enterprise/index.vue'),
+        meta: { title: '服务企业档案' }
+      },
+      // 物流服务
+      {
+        path: 'logistics',
+        name: 'LogisticsList',
+        component: () => import('@/views/logistics/index.vue'),
+        meta: { title: '物流服务' }
+      },
+      // 退税业务
+      {
+        path: 'tax-refunds',
+        name: 'TaxRefundList',
+        component: () => import('@/views/taxrefund/index.vue'),
+        meta: { title: '退税业务' }
+      },
+      // 结算收汇
+      {
+        path: 'settlements',
+        name: 'SettlementList',
+        component: () => import('@/views/settlement/index.vue'),
+        meta: { title: '结算收汇' }
+      },
+      // 信保服务
+      {
+        path: 'insurances',
+        name: 'InsuranceList',
+        component: () => import('@/views/insurance/index.vue'),
+        meta: { title: '信保服务' }
+      },
+      // 融资协助
+      {
+        path: 'financings',
+        name: 'FinancingList',
+        component: () => import('@/views/financing/index.vue'),
+        meta: { title: '融资协助' }
+      },
+      // 操作日志
+      {
+        path: 'logs',
+        name: 'OperationLog',
+        component: () => import('@/views/log/index.vue'),
+        meta: { title: '操作日志', roles: ['ADMIN', 'GUOHE'] }
+      },
+      // 省级认定驾驶舱
+      {
+        path: 'stats',
+        name: 'CertificationStats',
+        component: () => import('@/views/stats/index.vue'),
+        meta: { title: '认定驾驶舱', roles: ['ADMIN', 'GUOHE'] }
+      },
+      // 403 无权限
+      {
+        path: '403',
+        name: 'Forbidden',
+        component: () => import('@/views/403.vue'),
+        meta: { title: '无权限' }
       }
     ]
   }
@@ -219,6 +282,14 @@ router.beforeEach((to, from, next) => {
   if (!token) {
     next('/login')
     return
+  }
+  const roles = to.meta.roles
+  if (roles && roles.length > 0) {
+    const user = getUser()
+    if (!user || !roles.includes(user.role)) {
+      next('/403')
+      return
+    }
   }
   next()
 })

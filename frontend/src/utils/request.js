@@ -27,15 +27,21 @@ request.interceptors.response.use(
       if (res.code === 401) {
         clearAuth()
         router.push('/login')
+      } else if (res.code === 403) {
+        ElMessage.error('无权限执行此操作')
       }
       return Promise.reject(new Error(res.message || '请求失败'))
     }
     return res
   },
   error => {
-    if (error.response && error.response.status === 401) {
-      clearAuth()
-      router.push('/login')
+    if (error.response) {
+      if (error.response.status === 401) {
+        clearAuth()
+        router.push('/login')
+      } else if (error.response.status === 403) {
+        ElMessage.error('无权限执行此操作')
+      }
     }
     ElMessage.error(error.message || '网络错误')
     return Promise.reject(error)

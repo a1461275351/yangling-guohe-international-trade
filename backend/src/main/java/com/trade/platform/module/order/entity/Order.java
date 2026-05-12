@@ -30,6 +30,8 @@ public class Order extends BaseEntity {
 
     private String currency;
 
+    private Long enterpriseId;
+
     private String remark;
 
     @TableField(exist = false)

@@ -43,9 +43,16 @@ public class CustomsDeclaration {
 
     private String remark;
 
+    private Long contractId;
+
+    private Long orderId;
+
+    private Long enterpriseId;
+
     private LocalDateTime createTime;
 
-    /** 关联台账ID */
+    private LocalDateTime updateTime;
+
     private Long ledgerId;
 
     /** 拆单序号 */

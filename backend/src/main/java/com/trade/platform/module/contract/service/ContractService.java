@@ -37,6 +37,12 @@ public class ContractService {
         if (StringUtils.hasText(dto.getStatus())) {
             wrapper.eq(Contract::getStatus, dto.getStatus());
         }
+        if (dto.getEnterpriseId() != null) {
+            wrapper.eq(Contract::getEnterpriseId, dto.getEnterpriseId());
+        }
+        if (StringUtils.hasText(dto.getContractType())) {
+            wrapper.eq(Contract::getContractType, dto.getContractType());
+        }
         if (StringUtils.hasText(dto.getStartDate()) && StringUtils.hasText(dto.getEndDate())) {
             wrapper.between(Contract::getCreateTime,
                     LocalDate.parse(dto.getStartDate()).atStartOfDay(),
@@ -101,6 +107,14 @@ public class ContractService {
             throw new BusinessException("只有初始状态的合同才能删除");
         }
         contractMapper.deleteById(id);
+    }
+
+    public List<Contract> getActiveContracts() {
+        LambdaQueryWrapper<Contract> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Contract::getTenantId, UserContext.getTenantId());
+        wrapper.in(Contract::getStatus, Arrays.asList("EFFECTIVE", "EXECUTING", "SIGNING"));
+        wrapper.orderByDesc(Contract::getCreateTime);
+        return contractMapper.selectList(wrapper);
     }
 
     public List<Contract> getExpiringContracts(int days) {

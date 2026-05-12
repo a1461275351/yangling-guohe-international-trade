@@ -31,7 +31,10 @@ mybatis-plus:
 
 jwt:
   secret: YOUR_JWT_SECRET_CHANGE_THIS_IN_PRODUCTION
-  expiration: 86400000
+  expiration: 86400
+
+cors:
+  allowed-origins: http://YOUR_DOMAIN,https://YOUR_DOMAIN
 
 file:
   upload-path: ./uploads/

@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tenants")
-@RequireRole("ADMIN")
+@RequireRole({"ADMIN", "GUOHE"})
 public class TenantController {
 
     @Autowired

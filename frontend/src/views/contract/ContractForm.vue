@@ -29,6 +29,33 @@
           <el-input v-model="formData.title" placeholder="请输入合同标题" />
         </el-form-item>
 
+        <el-form-item label="合同类型" prop="contractType">
+          <el-select v-model="formData.contractType" placeholder="请选择合同类型" style="width: 100%">
+            <el-option label="采购合同" value="PURCHASE" />
+            <el-option label="销售合同" value="SALES" />
+            <el-option label="服务合同" value="SERVICE" />
+            <el-option label="代理合同" value="AGENCY" />
+            <el-option label="其他" value="OTHER" />
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="服务企业" prop="enterpriseId">
+          <el-select
+            v-model="formData.enterpriseId"
+            placeholder="请选择关联服务企业"
+            filterable
+            clearable
+            style="width: 100%"
+          >
+            <el-option
+              v-for="item in enterpriseList"
+              :key="item.id"
+              :label="item.enterpriseName"
+              :value="item.id"
+            />
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="本方企业" prop="ourCompany">
           <el-input v-model="formData.ourCompany" placeholder="请输入本方企业名称" />
         </el-form-item>
@@ -131,6 +158,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { getContractById, createContract, updateContract } from '@/api/contract'
 import { getActivePartners } from '@/api/partner'
+import { getActiveEnterprises } from '@/api/enterprise'
 
 const router = useRouter()
 const route = useRoute()
@@ -139,6 +167,7 @@ const formRef = ref(null)
 const pageLoading = ref(false)
 const submitLoading = ref(false)
 const partnerList = ref([])
+const enterpriseList = ref([])
 
 const contractId = computed(() => route.params.id)
 const isEdit = computed(() => !!contractId.value)
@@ -146,6 +175,8 @@ const isEdit = computed(() => !!contractId.value)
 const formData = reactive({
   contractNo: '',
   title: '',
+  contractType: '',
+  enterpriseId: null,
   ourCompany: '',
   partnerType: 'SUPPLIER',
   partnerId: null,
@@ -241,7 +272,17 @@ async function handleSubmit() {
   })
 }
 
+async function fetchEnterprises() {
+  try {
+    const res = await getActiveEnterprises()
+    enterpriseList.value = res.data || []
+  } catch (e) {
+    console.warn('获取服务企业列表失败', e)
+  }
+}
+
 onMounted(() => {
+  fetchEnterprises()
   if (isEdit.value) {
     fetchContractDetail()
   } else {

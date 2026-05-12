@@ -27,11 +27,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
+
+    private static final int MAX_LOGIN_ATTEMPTS = 5;
+    private static final long LOCKOUT_DURATION_MS = 30 * 60 * 1000L;
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=]).{8,32}$");
+
+    private final ConcurrentHashMap<String, int[]> loginAttempts = new ConcurrentHashMap<>();
 
     @Autowired
     private UserMapper userMapper;
@@ -49,6 +59,9 @@ public class UserService {
      * 用户登录
      */
     public LoginVO login(LoginDTO dto) {
+        String lockKey = dto.getTenantCode() + ":" + dto.getUsername();
+        checkLockout(lockKey);
+
         Tenant tenant = null;
         User user;
 
@@ -79,14 +92,18 @@ public class UserService {
         }
 
         if (user == null) {
+            recordFailedLogin(lockKey);
             throw new BusinessException("用户名或密码错误");
         }
         if (user.getStatus() != null && user.getStatus() == Constants.STATUS_DISABLED) {
             throw new BusinessException("用户已被禁用，请联系管理员");
         }
         if (!BCrypt.checkpw(dto.getPassword(), user.getPassword())) {
+            recordFailedLogin(lockKey);
             throw new BusinessException("用户名或密码错误");
         }
+
+        loginAttempts.remove(lockKey);
 
         // 生成JWT
         String token = jwtUtil.generateToken(user.getId(), user.getUsername(), user.getRole(), user.getTenantId());
@@ -142,13 +159,15 @@ public class UserService {
             throw new BusinessException("该用户名已有待审批的申请，请等待审批结果");
         }
 
+        validatePasswordComplexity(dto.getPassword());
+
         UserApply apply = new UserApply();
         apply.setUsername(dto.getUsername());
         apply.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
         apply.setRealName(dto.getRealName());
         apply.setPhone(dto.getPhone());
         apply.setEmail(dto.getEmail());
-        apply.setRole(dto.getRole());
+        apply.setRole(Constants.ROLE_ENTERPRISE);
         apply.setTenantId(tenant.getId());
         apply.setStatus("PENDING");
         apply.setCreateTime(LocalDateTime.now());
@@ -228,15 +247,27 @@ public class UserService {
     }
 
     /**
-     * 重置用户密码为默认密码
+     * 重置用户密码为随机密码并返回
      */
-    public void resetUserPassword(Long id) {
+    public String resetUserPassword(Long id) {
         User user = userMapper.selectById(id);
         if (user == null) {
             throw new BusinessException("用户不存在");
         }
-        user.setPassword(BCrypt.hashpw("123456", BCrypt.gensalt()));
+        String newPassword = generateRandomPassword(12);
+        user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
         userMapper.updateById(user);
+        return newPassword;
+    }
+
+    private String generateRandomPassword(int length) {
+        String chars = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return sb.toString();
     }
 
     /**
@@ -312,7 +343,8 @@ public class UserService {
                             .eq("tenant_id", apply.getTenantId())
             );
             if (user != null) {
-                user.setPassword(BCrypt.hashpw("123456", BCrypt.gensalt()));
+                String newPassword = generateRandomPassword(12);
+                user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
                 userMapper.updateById(user);
             }
         }
@@ -381,6 +413,7 @@ public class UserService {
                 throw new BusinessException("原密码错误");
             }
         }
+        validatePasswordComplexity(dto.getNewPassword());
         user.setPassword(BCrypt.hashpw(dto.getNewPassword(), BCrypt.gensalt()));
         userMapper.updateById(user);
     }
@@ -402,5 +435,44 @@ public class UserService {
         UpdateWrapper<User> wrapper = new UpdateWrapper<>();
         wrapper.eq("tenant_id", tenantId).set("status", status);
         userMapper.update(null, wrapper);
+    }
+
+    private void validatePasswordComplexity(String password) {
+        if (password == null || !PASSWORD_PATTERN.matcher(password).matches()) {
+            throw new BusinessException("密码需8-32位，包含大小写字母、数字和特殊字符(!@#$%^&*()_+-)");
+        }
+    }
+
+    private void checkLockout(String key) {
+        int[] attempts = loginAttempts.get(key);
+        if (attempts != null && attempts[0] >= MAX_LOGIN_ATTEMPTS) {
+            long lockedAt = ((long) attempts[1] << 32) | (attempts[2] & 0xFFFFFFFFL);
+            if (System.currentTimeMillis() - lockedAt < LOCKOUT_DURATION_MS) {
+                long remainMinutes = (LOCKOUT_DURATION_MS - (System.currentTimeMillis() - lockedAt)) / 60000 + 1;
+                throw new BusinessException("登录失败次数过多，请" + remainMinutes + "分钟后再试");
+            }
+            loginAttempts.remove(key);
+        }
+    }
+
+    private void recordFailedLogin(String key) {
+        loginAttempts.compute(key, (k, v) -> {
+            if (v == null) {
+                long now = System.currentTimeMillis();
+                return new int[]{1, (int) (now >> 32), (int) now};
+            }
+            v[0]++;
+            if (v[0] >= MAX_LOGIN_ATTEMPTS) {
+                long now = System.currentTimeMillis();
+                v[1] = (int) (now >> 32);
+                v[2] = (int) now;
+            }
+            return v;
+        });
+        int[] attempts = loginAttempts.get(key);
+        int remaining = MAX_LOGIN_ATTEMPTS - (attempts != null ? attempts[0] : 0);
+        if (remaining > 0 && remaining <= 3) {
+            throw new BusinessException("用户名或密码错误，还剩" + remaining + "次尝试机会");
+        }
     }
 }

@@ -62,6 +62,11 @@
       <el-table v-loading="loading" :data="contractList" border stripe>
         <el-table-column prop="contractNo" label="合同编号" min-width="160" show-overflow-tooltip />
         <el-table-column prop="title" label="标题" min-width="180" show-overflow-tooltip />
+        <el-table-column prop="contractType" label="合同类型" width="100" align="center">
+          <template #default="{ row }">
+            {{ contractTypeMap[row.contractType] || row.contractType || '-' }}
+          </template>
+        </el-table-column>
         <el-table-column prop="partnerName" label="对方名称" min-width="150" show-overflow-tooltip />
         <el-table-column prop="amount" label="合同金额" min-width="120" align="right">
           <template #default="{ row }">
@@ -156,6 +161,14 @@ const statusMap = {
   COMPLETED: '已完成',
   EXPIRED: '已过期',
   DESTROYED: '已销毁'
+}
+
+const contractTypeMap = {
+  PURCHASE: '采购合同',
+  SALES: '销售合同',
+  SERVICE: '服务合同',
+  AGENCY: '代理合同',
+  OTHER: '其他'
 }
 
 const statusColorMap = {

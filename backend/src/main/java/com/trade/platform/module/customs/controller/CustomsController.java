@@ -1,5 +1,6 @@
 package com.trade.platform.module.customs.controller;
 
+import com.trade.platform.common.OpLog;
 import com.trade.platform.common.PageResult;
 import com.trade.platform.common.Result;
 import com.trade.platform.module.customs.dto.CustomsQueryDTO;
@@ -7,6 +8,7 @@ import com.trade.platform.module.customs.dto.ReviewActionDTO;
 import com.trade.platform.module.customs.entity.CustomsDeclaration;
 import com.trade.platform.module.customs.entity.CustomsReview;
 import com.trade.platform.module.customs.service.CustomsService;
+import com.trade.platform.security.RequireRole;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +33,7 @@ public class CustomsController {
         return Result.success(customsService.getById(id));
     }
 
+    @OpLog(module = "报关单", action = "IMPORT", description = "导入报关单")
     @PostMapping("/import")
     public Result<Map<String, Object>> importExcel(@RequestParam("file") MultipartFile file) {
         return Result.success(customsService.importFromExcel(file));
@@ -38,18 +41,21 @@ public class CustomsController {
 
     // ==================== CRUD ====================
 
+    @OpLog(module = "报关单", action = "CREATE", description = "创建报关单")
     @PostMapping
     public Result<Void> create(@RequestBody Map<String, Object> body) {
         customsService.create(body);
         return Result.success();
     }
 
+    @OpLog(module = "报关单", action = "UPDATE", description = "编辑报关单")
     @PutMapping
     public Result<Void> update(@RequestBody Map<String, Object> body) {
         customsService.update(body);
         return Result.success();
     }
 
+    @OpLog(module = "报关单", action = "DELETE", description = "删除报关单")
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
         customsService.delete(id);
@@ -58,24 +64,31 @@ public class CustomsController {
 
     // ==================== Review Workflow ====================
 
+    @OpLog(module = "报关单", action = "SUBMIT", description = "提交报关单审核")
     @PutMapping("/{id}/submit")
     public Result<Void> submit(@PathVariable Long id) {
         customsService.submit(id);
         return Result.success();
     }
 
+    @OpLog(module = "报关单", action = "APPROVE", description = "审批通过报关单")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PutMapping("/{id}/approve")
     public Result<Void> approve(@PathVariable Long id, @RequestBody ReviewActionDTO dto) {
         customsService.approve(id, dto.getComment());
         return Result.success();
     }
 
+    @OpLog(module = "报关单", action = "REJECT", description = "驳回报关单")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PutMapping("/{id}/reject")
     public Result<Void> reject(@PathVariable Long id, @RequestBody ReviewActionDTO dto) {
         customsService.reject(id, dto.getComment());
         return Result.success();
     }
 
+    @OpLog(module = "报关单", action = "RELEASE", description = "放行报关单")
+    @RequireRole({"ADMIN", "GUOHE"})
     @PutMapping("/{id}/release")
     public Result<Void> release(@PathVariable Long id, @RequestBody ReviewActionDTO dto) {
         customsService.release(id, dto.getComment());

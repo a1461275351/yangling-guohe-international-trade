@@ -43,4 +43,8 @@ public class Contract extends BaseEntity {
     private String terms;
 
     private String remark;
+
+    private Long enterpriseId;
+
+    private String contractType;
 }

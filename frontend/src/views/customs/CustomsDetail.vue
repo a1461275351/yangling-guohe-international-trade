@@ -43,6 +43,28 @@
         <el-descriptions-item label="备注" :span="2">{{ detail.remark || '-' }}</el-descriptions-item>
       </el-descriptions>
 
+      <!-- 关联信息 -->
+      <div v-if="detail && (detail.contractId || detail.orderId || detail.enterpriseId)" style="margin-top: 24px">
+        <el-divider content-position="left">关联业务</el-divider>
+        <el-descriptions :column="3" border>
+          <el-descriptions-item label="关联合同">
+            <el-link v-if="detail.contractId" type="primary" @click="$router.push(`/contracts/detail/${detail.contractId}`)">
+              {{ detail.contractNo || `合同#${detail.contractId}` }}
+            </el-link>
+            <span v-else>-</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="关联订单">
+            <el-link v-if="detail.orderId" type="primary" @click="$router.push(`/orders/detail/${detail.orderId}`)">
+              订单#{{ detail.orderId }}
+            </el-link>
+            <span v-else>-</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="服务企业">
+            {{ detail.enterpriseName || (detail.enterpriseId ? `企业#${detail.enterpriseId}` : '-') }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+
       <!-- Customs Goods -->
       <div v-if="goodsList.length > 0" style="margin-top: 24px">
         <el-divider content-position="left">商品明细</el-divider>

@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user-applies")
-@RequireRole("ADMIN")
+@RequireRole({"ADMIN", "GUOHE"})
 public class UserApplyController {
 
     @Autowired

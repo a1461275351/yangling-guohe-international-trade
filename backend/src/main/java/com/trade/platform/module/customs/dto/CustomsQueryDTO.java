@@ -17,6 +17,12 @@ public class CustomsQueryDTO {
 
     private String status;
 
+    private Long contractId;
+
+    private Long orderId;
+
+    private Long enterpriseId;
+
     private Long current = 1L;
 
     private Long size = 20L;
