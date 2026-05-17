@@ -1,1 +1,0 @@
-import{t as e}from"./request-5h_RJlqR.js";function t(t){return e.post(`/api/auth/login`,t)}function n(t){return e.post(`/api/auth/register`,t)}export{n,t};

@@ -5,7 +5,7 @@ if not exist "uploads" mkdir uploads
 if not exist "logs" mkdir logs
 
 echo Starting backend...
-start /b java -jar trade-platform-1.0.0.jar --spring.config.location=application-prod.yml > logs\app.log 2>&1
+start /b java -jar trade-platform-1.0.4.jar --spring.config.location=application-prod.yml > logs\app.log 2>&1
 
 timeout /t 10 /nobreak > nul
 
