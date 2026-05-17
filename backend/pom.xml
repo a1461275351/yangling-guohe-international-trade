@@ -13,7 +13,7 @@
 
     <groupId>com.trade</groupId>
     <artifactId>trade-platform</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.4</version>
     <name>trade-platform</name>
     <description>Foreign Trade Comprehensive Service Platform</description>
 

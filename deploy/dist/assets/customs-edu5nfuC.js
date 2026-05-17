@@ -1,0 +1,1 @@
+import{t as e}from"./request-lSlF5wbr.js";function t(t){return e.post(`/api/customs/list`,t)}function n(t){return e.get(`/api/customs/${t}`)}function r(t){let n=new FormData;return n.append(`file`,t),e.post(`/api/customs/import`,n,{headers:{"Content-Type":`multipart/form-data`}})}export{t as n,r,n as t};
