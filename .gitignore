@@ -97,9 +97,16 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # ============ Claude Code ============
-.claude/settings.local.json
-.claude/worktrees/
-.claude/sessions/
+# 完整忽略整个 .claude/ 目录（含 worktrees / sessions / 配置 / 日志等）
+.claude/
+CLAUDE.md
+.claude.json
+
+# ============ 本地辅助文件 ============
+# 临时打包目录（部署包请使用项目外路径，如 D:\autoWorkPlatform-release\）
+deploy/上传到服务器/
+每日浏览.txt
+每日浏览*.txt
 
 # ============ AI tools ============
 .cursor/
